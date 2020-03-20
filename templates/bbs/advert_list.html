@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div class="title"><h1>Adverts List</h1></div>
+
+    {% if advert_list %}
+    <ul>
+      {% for advert in advert_list %}
+      <li>
+        <a href="{{ advert.get_absolute_url }}">{{ advert.title }}</a> - {{advert.display_category}} - {{advert.price}} RUB - ({{advert.author}})
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no books in the library.</p>
+    {% endif %}
+{% endblock %}

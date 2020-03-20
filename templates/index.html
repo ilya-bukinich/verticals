@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>BBS Homepage</h1>
+      <div>
+          <div>
+            <p>The BBS has the following record counts:</p>
+          </div>
+        <div>
+        <ul>
+          <li><strong>Adverts:</strong> {{ num_ads }}</li>
+          <li><strong>Categories:</strong> {{ list_cats }}</li>
+        </ul>
+        </div>
+      </div>
+    <p>You have visited this page {{ num_visits }} times.</p>
+</div>
+{% endblock %}

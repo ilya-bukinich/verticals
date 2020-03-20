@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="title"><h1>Title: {{ advert.title }}</h1></div>
+<div class="row">
+
+  <div class="col-sm-6">
+      {% if advert.image %}
+      <img src="{{ MEDIA_URL }}{{ advert.image.url }}" class="img-fluid" alt="{{ advert.title }}">
+      {% endif %}
+  </div>
+  <div class="col-sm-6">
+    <div class="panel">
+        <p><strong>Author:</strong> {{ advert.author }}</p>
+        <p><strong>Create date:</strong> {{ advert.create_datetime|date:"DATETIME_FORMAT" }}</p>
+        <p><strong>Price:</strong> {{ advert.price }} </p>
+        <p><strong>Category:</strong> {{ advert.display_category }}</p>
+        <p><strong>Summary:</strong> {{ advert.summary }}</p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

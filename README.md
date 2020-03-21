@@ -55,6 +55,9 @@
 `curl -i -X GET 'http://127.0.0.1:8000/api/advert/1/?format=json'`
 
 ### Создать объявление
+
+Требуется Basic авторизация `--user test:QqnSnm9h6CxPSAP` в заголовке
+
 **Пример запроса:**
 
 `curl -i -X POST -H 'Content-Type: application/json' --user test:QqnSnm9h6CxPSAP 'http://127.0.0.1:8000/api/advert/create/?format=json' --data '{"title": "Продам гараж", "price": 1000, "author": "Василий", "summary": "Продам гараж. Хорошая транспортная доступность, без жд переездов и тп., 10 мин от метро.

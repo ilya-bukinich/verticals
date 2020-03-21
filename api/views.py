@@ -1,10 +1,9 @@
-from django.conf.urls import url
 from rest_framework import generics, filters, permissions
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from bbs.models import Advert, Category
 from api.serializers import AdvertSerializer, AdvertListSerializer, CategorySerializer
 from django_filters.rest_framework import DjangoFilterBackend
@@ -51,8 +50,8 @@ class AdvertCreateView(generics.CreateAPIView):
     """
     serializer_class = AdvertSerializer
     queryset = Advert.objects.all()
-    authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    authentication_classes = (BasicAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
 
 class CategoryListView(generics.ListAPIView):

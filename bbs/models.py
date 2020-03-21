@@ -1,7 +1,8 @@
 import os
+import uuid
 from django.db import models
 from django.urls import reverse
-import uuid
+from bbs_site.validators import validate_file_size
 
 
 # Create your models here.
@@ -25,7 +26,7 @@ class Advert(models.Model):
     title = models.CharField(max_length=200)
     create_datetime = models.DateTimeField(auto_now=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ManyToManyField(Category, help_text="Select a category for this ad")
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     author = models.CharField(max_length=200)
     summary = models.TextField(max_length=1000, help_text="Enter description of the ad")
 
@@ -37,7 +38,7 @@ class Advert(models.Model):
         filename = "%s.%s" % (uuid.uuid4(), ext)
         return os.path.join('', filename)
 
-    image = models.ImageField(upload_to=get_image_path, null=True, blank=True)
+    image = models.ImageField(upload_to=get_image_path, null=True, blank=True, validators=[validate_file_size])
 
     def __str__(self):
         return self.title
@@ -45,10 +46,5 @@ class Advert(models.Model):
     def get_absolute_url(self):
         return reverse('advert_detail', args=[str(self.id)])
 
-    def display_category(self):
-        return ', '.join([category.name for category in self.category.all()[:3]])
-
     class Meta:
         ordering = ["id"]
-
-    display_category.short_description = 'Category'

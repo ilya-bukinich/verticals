@@ -7,7 +7,7 @@ from .models import Advert, Category
 def index(request):
     num_ads = Advert.objects.all().count()
     list_cats = Category.objects.all().count()
-    num_visits = request.session.get('num_visits', 0)
+    num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
 
     return render(

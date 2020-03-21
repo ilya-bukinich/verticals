@@ -33,9 +33,9 @@ urlpatterns += [
     path('', RedirectView.as_view(url='/bbs', permanent=True)),
 ]
 
-# urlpatterns += [
-#     url(r'^api/', include('bbs.api.urls', namespace='api')),
-# ]
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

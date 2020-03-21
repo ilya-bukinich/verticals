@@ -16,8 +16,9 @@ def api_root(request, format=None):
     API root representation
     """
     return Response({
-        'For testing use credential': 'User: api, password: QqnSnm9h6CxPSAP',
+        'For testing use credential': 'User: test, password: QqnSnm9h6CxPSAP',
         'api_adverts_list': reverse('api_adverts_list', request=request, format=format),
+        'api_categories_list': reverse('api_categories_list', request=request, format=format),
         'api_advert_create': reverse('api_advert_create', request=request, format=format),
     })
 

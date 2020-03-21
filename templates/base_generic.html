@@ -14,7 +14,8 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    {% block sidebar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 ml-1 mr-1">
       <a class="navbar-brand" href="/bbs">BBS Example</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,15 +29,21 @@
           <li class="nav-item">
             <a class="nav-link" href="/api">API</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin">Login</a>
-          </li>
+            {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          <li class="nav-item"><span class="navbar-text">User: {{ user.get_username }}</span></li>
+            {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+            {% endif %}
         </ul>
       </div>
     </nav>
+    {% endblock %}
+
 
     <div class="container-fluid">
-    <div class="col-sm-8">
+    <div class="col-sm-8 mt-2">
       {% block content %}{% endblock %}
 
         {% block pagination %}

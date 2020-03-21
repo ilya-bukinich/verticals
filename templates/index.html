@@ -2,25 +2,26 @@
 
 {% block content %}
 
-<div class="jumbotron">
-  <h1 class="display-3">BBS Example</h1>
-  <p class="lead">It is necessary to create a service for storing and submitting ads. Ads must be stored in a database. The service must provide an API running on top of HTTP in JSON format</p>
+<div class="container-fluid">
+<div class="jumbotron mt-3">
+  <h1 class="display-3">Bulletin board</h1>
+  <p class="lead">It is necessary to create a service for storing and submitting ads. Ads must be stored in a database.<br>
+      The service must provide an API running on top of HTTP in JSON format</p>
   <hr>
-    <p class="lead">For testing use credential: user: api, password: QqnSnm9h6CxPSAP</p>
+    <p class="lead text-danger">For testing use credential: user: test, password: QqnSnm9h6CxPSAP</p>
 </div>
 
+</div>
 <div class="container-fluid">
       <div>
-          <div>
-            <p>The BBS has the following record counts:</p>
-          </div>
-        <div>
+      <div>
+        <p>The Board has the following record counts:</p>
         <ul>
           <li><strong>Adverts:</strong> {{ num_ads }}</li>
           <li><strong>Categories:</strong> {{ list_cats }}</li>
         </ul>
-        </div>
       </div>
     <p>You have visited this page {{ num_visits }} times.</p>
 </div>
+
 {% endblock %}

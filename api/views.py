@@ -13,7 +13,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 @permission_classes((permissions.IsAuthenticatedOrReadOnly,))
 def api_root(request, format=None):
     return Response({
-        'For testing use credential': 'User: test, password: QqnSnm9h6CxPSAP',
         'api_adverts_list': reverse('api_adverts_list', request=request, format=format),
         'api_categories_list': reverse('api_categories_list', request=request, format=format),
         'api_advert_create': reverse('api_advert_create', request=request, format=format),
@@ -25,7 +24,7 @@ class AdvertsListView(generics.ListAPIView):
     queryset = Advert.objects.all()
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
     ordering_fields = ('price', 'create_datetime')
 
 

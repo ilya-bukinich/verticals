@@ -12,9 +12,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticatedOrReadOnly,))
 def api_root(request, format=None):
-    """
-    API root representation
-    """
     return Response({
         'For testing use credential': 'User: test, password: QqnSnm9h6CxPSAP',
         'api_adverts_list': reverse('api_adverts_list', request=request, format=format),
@@ -24,9 +21,6 @@ def api_root(request, format=None):
 
 
 class AdvertsListView(generics.ListAPIView):
-    """
-    Ads List View
-    """
     serializer_class = AdvertListSerializer
     queryset = Advert.objects.all()
     authentication_classes = (BasicAuthentication,)
@@ -36,9 +30,6 @@ class AdvertsListView(generics.ListAPIView):
 
 
 class AdvertDetailView(generics.RetrieveAPIView):
-    """
-    Ad Detail View
-    """
     serializer_class = AdvertSerializer
     queryset = Advert.objects.all()
     authentication_classes = (BasicAuthentication,)
@@ -46,9 +37,6 @@ class AdvertDetailView(generics.RetrieveAPIView):
 
 
 class AdvertCreateView(generics.CreateAPIView):
-    """
-    Ad Create View
-    """
     serializer_class = AdvertSerializer
     queryset = Advert.objects.all()
     authentication_classes = (BasicAuthentication, )
@@ -56,9 +44,6 @@ class AdvertCreateView(generics.CreateAPIView):
 
 
 class CategoryListView(generics.ListAPIView):
-    """
-    Category List View
-    """
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
     authentication_classes = (BasicAuthentication,)

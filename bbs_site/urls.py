@@ -25,7 +25,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^bbs', include('bbs.urls')),
+    url(r'^bbs/', include('bbs.urls')),
     url(r'^api/', include('api.urls')),
 ]
 

@@ -1,3 +1,5 @@
+###
+
 # Test request
 
 #cURL
@@ -11,11 +13,11 @@
 # -F "summary=Продам гараж. Хорошая транспортная доступность. Гараж сухой и светлый."
 # -F "image=@/path/to/your_photo.jpg;type=image/jpg"
 # -F "category=1"
-#'http://test:QqnSnm9h6CxPSAP@127.0.0.1:8000/api/advert/create/?format=json'
+#'http://127.0.0.1:8000/api/advert/create/?format=json'
 
 # HTTP
 
-POST http://test:QqnSnm9h6CxPSAP@127.0.0.1:8000/api/advert/create/?format=json
+POST http://127.0.0.1:8000/api/advert/create/?format=json
 Accept: application/json
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
@@ -38,7 +40,7 @@ Content-Disposition: form-data; name="summary"
 --WebAppBoundary
 Content-Disposition: form-data; name="image"; filename="your_photo.jpg"
 
-< /path/to/your_photo.jpg
+< @/path/to/your_photo.jpg
 --WebAppBoundary
 Content-Disposition: form-data; name="category"
 

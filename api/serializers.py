@@ -8,7 +8,7 @@ class AdvertListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Advert
-        fields = ['id', 'title', 'image', 'price', 'create_datetime']
+        fields = ['title', 'image', 'price', 'create_datetime']
 
 
 class AdvertSerializer(serializers.ModelSerializer):

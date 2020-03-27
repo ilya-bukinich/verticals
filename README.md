@@ -47,7 +47,8 @@ $ python manage.py runserver
 
 Контейнеризированная установка:
 - установить Docker, Docker Compose
-- выполнить `docker-compose up`
+- обновить права доступа `chmod +x verticals/entrypoint.sh`
+- выполнить `docker-compose up -d --build`
 
 ## Документация по API
 

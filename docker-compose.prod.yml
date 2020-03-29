@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 
 services:
   web:
@@ -27,7 +27,7 @@ services:
       - static_volume:/home/verticals/web/staticfiles
       - media_volume:/home/verticals/web/media
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - web
 
@@ -35,3 +35,7 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
+
+networks:
+  default:
+    driver: bridge

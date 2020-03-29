@@ -67,23 +67,3 @@ class AdvertListViewTest(TestCase):
         self.assertEqual(resp.status_code, 200)
 
         self.assertTemplateUsed(resp, 'bbs/advert_list.html')
-
-    print("""
-I was not too lazy to write tests
-But since everything is out of the box, I don’t even know what to test
-Safety Pig is responsible for the performance of generics
-           _
-          ((`)_.._     ,'-. _..._ _._
-           \,'    '-._.-\  '     ` .-'
-          .'            /         (
-         /             |     _   _ |
-        |              \     e   e  |
-        ;               \     .-.   /
-         ;       ',       '-.( '')-'
-          '.      |           ;-'
-            \    /           /
-            /   /-._  __,  7 |
-            \  `\  \``  |  | |
-             \   \_,\   |  |_,|
-              '-`'      \_,|
-        """)

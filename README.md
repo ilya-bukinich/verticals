@@ -1,8 +1,3 @@
-## Pеализация:
-Делал, чтобы разобраться как это всё работает, вместо ссылок на фото прикрутил загрузку фото, сделан фронтенд на Bootstrap
-
-Технологии: Python3, Django, DRF, PostgreSQL, Docker, Nginx
-
 ## Создать JSON API для сайта объявлений
 Необходимо создать сервис для хранения и подачи объявлений. Объявления должны храниться в базе данных. Сервис должен предоставлять API, работающее поверх HTTP в формате JSON.
 
@@ -11,6 +6,10 @@
 - код должен быть выложен на github
 - 3 метода: получение списка объявлений, получение одного объявления, создание объявления
 - валидация полей (~~не больше 3 ссылок на фото~~ **+загрузка фото**, описание не больше 1000 символов, название не больше 200 символов)
+
+### Pеализация:
+Делал, чтобы разобраться как это всё работает, вместо ссылок на фото прикрутил загрузку фото, сделан фронтенд на Bootstrap
+Технологии: Python3, Django, DRF, PostgreSQL, Nginx, Docker
 
 ### Метод получения списка объявлений
 - нужна пагинация, на одной странице должно присутствовать 10 объявлений ✔
@@ -33,30 +32,36 @@
 
 ## Установка
 
-Установка на локальную машину:
-- установить виртуальное окружение
+Клонировать репозиторий: `git clone https://github.com/ilya-bukinich/verticals.git && cd verticals/`
+
+### Установка локально:
 ```
-$ pip install -r requirements.txt
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py collectstatic
-$ python manage.py test # Run the standard tests. These should all pass.
-$ python manage.py createsuperuser # Create a superuser
-$ python manage.py runserver
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic
+python manage.py test
+python manage.py createsuperuser
+python manage.py runserver
 ```
 
-Контейнеризированная установка:
-- установить Docker, Docker Compose
+### Контейнеризированная установка:
+На dev окружении:
 - обновить права доступа `chmod +x verticals/entrypoint.sh`
 - выполнить `docker-compose up -d --build`
+На prod окружении:
+- переопределить секретный ключ, пароль db, добавить свой адрес в список хостов (файлы .env.prod, .env.prod.db)
+- обновить права доступа `chmod +x verticals/entrypoint.prod.sh`
+- выполнить `docker-compose -f docker-compose.prod.yml up -d --build`
+- создать суперпользователя `docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperuser`
 
 ## Документация по API
 
 ### API Root
-`curl -i -X GET 'http://127.0.0.1:8000/api/?format=json'`
+`curl -i -X GET 'http://127.0.0.1:8080/api/?format=json'`
 
 ### Получить список объявлений
-`curl -i -X GET 'http://127.0.0.1:8000/api/adverts/?format=json'`
+`curl -i -X GET 'http://127.0.0.1:8080/api/adverts/?format=json'`
 
 **Фильтры:**
 - `?ordering=price` - по возрастанию цены
@@ -70,15 +75,14 @@ $ python manage.py runserver
 - 4-я страница `?limit=10&offset=30`
 
 **Пример запроса:**
-`curl -i -X GET 'http://127.0.0.1:8000/api/adverts/?offset=20&ordering=price?format=json'` - 3-я страница, сортировка по возрастанию цены
+`curl -i -X GET 'http://127.0.0.1:8080/api/adverts/?offset=20&ordering=price?format=json'` - 3-я страница, сортировка по возрастанию цены
 
 ### Получить объявление
 **Пример запроса:**
 
-`curl -i -X GET 'http://127.0.0.1:8000/api/advert/1/?format=json'`
+`curl -i -X GET 'http://127.0.0.1:8080/api/advert/1/?format=json'`
 
 ### Создать объявление
-
 
 **Пример запроса:**
 
@@ -90,9 +94,7 @@ curl -i -X POST \
  -F "price=1000" \
  -F "author=Василий" \
  -F "summary=Продам гараж. Хорошая транспортная доступность. Гараж сухой и светлый." \
- -F "image=@/path/to/your_photo.jpg;type=image/jpg" \
- -F "category=1" \
-'http://127.0.0.1:8000/api/advert/create/?format=json'
+'http://127.0.0.1:8080/api/advert/create/?format=json'
 ```
 
 **Пример ответа:**
@@ -112,7 +114,5 @@ Allow: POST, OPTIONS
   "price": "1000.00",
   "author": "Василий",
   "summary": "Продам гараж. Хорошая транспортная доступность. Гараж сухой и светлый.",
-  "image": "http://127.0.0.1:8000/media/442d4ea1-cf00-40e8-ac6b-711d09567e8b.jpg",
-  "category": 1
 }
 ```

@@ -5,12 +5,12 @@ services:
     build:
       context: ./verticals
       dockerfile: Dockerfile.prod
-    command: gunicorn bbs_site.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn bbs_site.wsgi:application --bind 0.0.0.0:8080
     volumes:
       - static_volume:/home/verticals/web/staticfiles
       - media_volume:/home/verticals/web/media
     expose:
-      - 8000
+      - 8080
     env_file:
       - ./.env.prod
     depends_on:

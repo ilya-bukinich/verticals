@@ -46,11 +46,11 @@ python manage.py runserver
 ```
 
 ### Контейнеризированная установка:
-На dev окружении:
+**На dev окружении:**
 - обновить права доступа `chmod +x verticals/entrypoint.sh`
 - выполнить `docker-compose up -d --build`  
-</br>
-На prod окружении:
+
+**На prod окружении:**
 - переопределить секретный ключ, пароль db, добавить свой адрес в список хостов (файлы .env.prod, .env.prod.db)
 - обновить права доступа `chmod +x verticals/entrypoint.prod.sh`
 - выполнить `docker-compose -f docker-compose.prod.yml up -d --build`

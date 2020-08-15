@@ -49,6 +49,7 @@ python manage.py runserver
 На dev окружении:
 - обновить права доступа `chmod +x verticals/entrypoint.sh`
 - выполнить `docker-compose up -d --build`  
+</br>
 На prod окружении:
 - переопределить секретный ключ, пароль db, добавить свой адрес в список хостов (файлы .env.prod, .env.prod.db)
 - обновить права доступа `chmod +x verticals/entrypoint.prod.sh`

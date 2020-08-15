@@ -59,10 +59,10 @@ python manage.py runserver
 ## Документация по API
 
 ### API Root
-`curl -i -X GET 'http://127.0.0.1:8080/api/?format=json'`
+`curl -i -X GET 'http://localhost:8080/api/?format=json'`
 
 ### Получить список объявлений
-`curl -i -X GET 'http://127.0.0.1:8080/api/adverts/?format=json'`
+`curl -i -X GET 'http://localhost:8080/api/adverts/?format=json'`
 
 **Фильтры:**
 - `?ordering=price` - по возрастанию цены
@@ -76,12 +76,12 @@ python manage.py runserver
 - 4-я страница `?limit=10&offset=30`
 
 **Пример запроса:**
-`curl -i -X GET 'http://127.0.0.1:8080/api/adverts/?offset=20&ordering=price?format=json'` - 3-я страница, сортировка по возрастанию цены
+`curl -i -X GET 'http://localhost:8080/api/adverts/?offset=20&ordering=price?format=json'` - 3-я страница, сортировка по возрастанию цены
 
 ### Получить объявление
 **Пример запроса:**
 
-`curl -i -X GET 'http://127.0.0.1:8080/api/advert/1/?format=json'`
+`curl -i -X GET 'http://localhost:8080/api/advert/1/?format=json'`
 
 ### Создать объявление
 
@@ -95,7 +95,7 @@ curl -i -X POST \
  -F "price=1000" \
  -F "author=Василий" \
  -F "summary=Продам гараж. Хорошая транспортная доступность. Гараж сухой и светлый." \
-'http://127.0.0.1:8080/api/advert/create/?format=json'
+'http://localhost:8080/api/advert/create/?format=json'
 ```
 
 **Пример ответа:**
